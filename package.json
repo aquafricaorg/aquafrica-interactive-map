@@ -1,0 +1,20 @@
+{
+  "name": "aquafrica.org",
+  "version": "1.0.0",
+  "description": "Map Feature for Aqua Africa",
+  "main": "index.js",
+  "dependencies": {
+    "d3": "^4.10.0",
+    "httpster": "^1.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "africa",
+    "water"
+  ],
+  "author": "Tad",
+  "license": "ISC"
+}

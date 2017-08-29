@@ -1,0 +1,59 @@
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+<script src="node_modules/datamaps/dist/datamaps.world.min.js"></script>
+<script src="node_modules/datamaps/dist/datamaps.world.min.js"></script>
+<script src="node_modules/canvasjs/dist/canvasjs.js"></script>
+<style type="text/css">
+div.inline { float:left; }
+.clearBoth { clear:both; }
+</style>
+
+<div class="inline" id="container" style="position: relative; width: 500px; height: 520px;"></div>
+<div class="inline" id="chartContainer">
+</div>
+<script>
+    var data_points = [
+      { x: 2015, y: 10 },
+      { x: 2016, y: 15 },
+      { x: 2017, y: 25 },
+      { x: 2018, y: 30 },
+      { x: 2019, y: 28 }
+    ];
+
+    var title = "Lil Whore";
+
+    window.onload = function () {
+        var chart = new CanvasJS.Chart("chartContainer", {
+            title: {text: title},
+            axisX:{
+              valueFormatString:"####"
+            },
+            data: [
+            {
+                type: "line",
+                  xValueFormatString:"Year ####",
+                dataPoints: data_points
+            }
+            ]
+        });
+
+        chart.render();
+    }
+
+    var map = new Datamap({element: document.getElementById('container'),
+                          scope: 'world',
+                          setProjection: function(element) {
+                            var projection = d3.geo.equirectangular().center([23, 3   ]).rotate([4.4, 0]).scale(400).translate([element.offsetWidth / 2, element.offsetHeight / 2  ]);
+                            var path = d3.geo.path().projection(projection);
+                            return {path: path, projection: projection};
+                          },
+                          done: function(datamap) {
+                            datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
+                              title = geography.properties.name;
+                              alert(geography.properties.name);
+                            });
+   }
+    });
+
+
+</script>
